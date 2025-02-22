@@ -10,10 +10,11 @@ logging.basicConfig(level=logging.WARN)
 snowflake.connector.paramstyle='qmark'
 
 def connect_snow():
-    private_key = "-----BEGIN PRIVATE KEY-----\n" + os.getenv("PRIVATE_KEY") + "\n-----END PRIVATE KEY-----\n)"
+    private_key =  "-----BEGIN PRIVATE KEY-----\n" + os.getenv("PRIVATE_KEY") + "\n-----END PRIVATE KEY-----\n)"
+    private_key = private_key.encode() 
     p_key = serialization.load_pem_private_key(
-        bytes(private_key, 'utf-8'),
-        password=None
+       private_key,        
+       password=None
     )
     pkb = p_key.private_bytes(
         encoding=serialization.Encoding.DER,
