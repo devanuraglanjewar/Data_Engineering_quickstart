@@ -9,8 +9,9 @@ load_dotenv()
 logging.basicConfig(level=logging.WARN)
 snowflake.connector.paramstyle='qmark'
 
+
 def connect_snow():
-    private_key =  "-----BEGIN PRIVATE KEY-----\n" + os.getenv("PRIVATE_KEY") + "\n-----END PRIVATE KEY-----\n)"
+    private_key =  "-----BEGIN PRIVATE KEY-----\n" + os.getenv("PRIVATE_KEY") + "\n-----END PRIVATE KEY-----\n"
     private_key = private_key.encode() 
     p_key = serialization.load_pem_private_key(
        private_key,        
@@ -22,7 +23,7 @@ def connect_snow():
         encryption_algorithm=serialization.NoEncryption())
 
     return snowflake.connector.connect(
-        account=os.getenv("SNOWFLAKE_ACCOUNT"),
+        account= os.getenv("SNOWFLAKE_ACCOUNT"),
         user=os.getenv("SNOWFLAKE_USER"),
         private_key=pkb,
         role="INGEST",
