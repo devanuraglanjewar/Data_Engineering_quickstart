@@ -18,7 +18,7 @@ def connect_snow():
 
     p_key = serialization.load_pem_private_key(
         private_key,
-        password=None
+        password= None
     )
 
     pkb = p_key.private_bytes(
